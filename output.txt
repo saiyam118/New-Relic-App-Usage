@@ -1,0 +1,40 @@
+Output
+Report Date: 2024-10-27 11:00:00 - 2024-10-28 11:00:00 
+
+
+Data Format: (MaxCount,Threshold) 
+App Cluster 
+NotificationsAppWeb: (4, 8)  
+LearningpathWeb: (4, 8)  
+NlpAppWeb: (4, 8)  
+SupportAdminAppWeb: (2, 8)  
+DashboardWeb: (2, 8)  
+FocAppWeb: (2, 8)  
+ClassAppWeb: (2, 8)  
+IeltsAppWeb: (2, 8)  
+OnboardingWeb: (2, 8)  
+AdminAppWeb: (2, 8)  
+MobileGatewayAppWeb: (2, 8)  
+Microservices
+AnalyticsClassrecordProgressCEWorkerWorker: (10, 10)  Max threshold reached
+AnalyticsUserProgressCEWorkerWorker: (4, 4)  Max threshold reached
+XapiMainWorkerWorker: (24, 25)  Warning: 80% threshold reached
+AnalyticsClassrecordProgressWorkerWorker: (31, 45)  
+AuthSpacesWorker: (20, 25)  
+AnalyticsUserProgressWorkerWorker: (17, 30)  
+DriveWeb: (9, 12)  
+AnalyticsWeb: (8, 14)  
+ProductWeb: (6, 10)  
+XapiWeb: (4, 8)  
+AnalyticsProductWorkerWorker: (3, 5)  
+AuthWeb: (3, 8)  
+PubWeb: (2, 4)  
+PushxWeb: (2, 4)  
+AuthExtnWeb: (2, 6)  
+AnalyticsClassrecordWorkerWorker: (2, 8)  
+PushxMessagingWorkerWorker: (2, 6)  
+IntegrationsWeb: (2, 4)  
+AuthClassProductWorker: (2, 3)  
+BuilderWeb: (2, 3)  
+AttemptsWeb: (2, 4)  
+Auth2RuleWorkerWorker: (2, 4)  
