@@ -14,12 +14,12 @@ const ACCOUNT_ID = process.env.ACCOUNT_ID;  // Use ACCOUNT_ID from .env
 const reportDate = process.argv[2]
   ? moment(process.argv[2], "YYYY-MM-DD 11:00:00+0530")
   : moment(); // Use the provided date or default to today
-const today = reportDate.format("YYYY-MM-DD 11:00:00");
+const today = reportDate.format("YYYY-MM-DD 11:00:00+0530");
 const today_formatted = reportDate.format("YYYY-MM-DD");
 const yesterday = reportDate
   .clone()
   .subtract(1, "day")
-  .format("YYYY-MM-DD 11:00:00");
+  .format("YYYY-MM-DD 11:00:00+0530");
   const yesterday_formatted = reportDate.subtract(1,"day").format("YYYY-MM-DD");
   
 
@@ -80,7 +80,7 @@ function processAndSaveOutput(queryData, maxTasks) {
   let outputData = [];
 
   // Add the report date to the beginning of the output data
-  const reportHeader = `Report Date: ${yesterday} - ${today} \n\n`;
+  const reportHeader = `Report Date: ${yesterday} - ${today} \n`;
   outputData.push({ Output: reportHeader });
 
   // Loop through each query result in queryData
@@ -93,7 +93,7 @@ function processAndSaveOutput(queryData, maxTasks) {
     // Add a label for each query result (First Query, Second Query, etc.)
     const queryLabel =
       index === 0
-        ? "Data Format: (MaxCount,Threshold) \nApp Cluster "
+        ? "Data Format: (MaxCount,Threshold) \n\nApp Cluster "
         : "Microservices";
     outputData.push({ Output: queryLabel });
 

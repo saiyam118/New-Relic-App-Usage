@@ -1,27 +1,28 @@
 Output
-Report Date: 2024-10-27 11:00:00 - 2024-10-28 11:00:00 
-
+Report Date: 2024-10-27 11:00:00+0530 - 2024-10-28 11:00:00+0530 
 
 Data Format: (MaxCount,Threshold) 
+
 App Cluster 
 NotificationsAppWeb: (4, 8)  
 LearningpathWeb: (4, 8)  
 NlpAppWeb: (4, 8)  
-SupportAdminAppWeb: (2, 8)  
 DashboardWeb: (2, 8)  
+SupportAdminAppWeb: (2, 8)  
 FocAppWeb: (2, 8)  
 ClassAppWeb: (2, 8)  
-IeltsAppWeb: (2, 8)  
 OnboardingWeb: (2, 8)  
+IeltsAppWeb: (2, 8)  
 AdminAppWeb: (2, 8)  
 MobileGatewayAppWeb: (2, 8)  
+
 Microservices
+XapiMainWorkerWorker: (25, 25)  Max threshold reached
 AnalyticsClassrecordProgressCEWorkerWorker: (10, 10)  Max threshold reached
 AnalyticsUserProgressCEWorkerWorker: (4, 4)  Max threshold reached
-XapiMainWorkerWorker: (24, 25)  Warning: 80% threshold reached
 AnalyticsClassrecordProgressWorkerWorker: (31, 45)  
 AuthSpacesWorker: (20, 25)  
-AnalyticsUserProgressWorkerWorker: (17, 30)  
+AnalyticsUserProgressWorkerWorker: (19, 30)  
 DriveWeb: (9, 12)  
 AnalyticsWeb: (8, 14)  
 ProductWeb: (6, 10)  
