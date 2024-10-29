@@ -27,6 +27,7 @@ const yesterday = reportDate
 const queries = [
   `{ actor { account(id: ${ACCOUNT_ID}) { nrql(query: \"SELECT max(aws.ecs.runningCount.byService) AS 'Running Task Count' FROM Metric Where aws.ecs.ClusterName = 'dls-cup-prod1-apps' FACET aws.ecs.ServiceName LIMIT MAX SINCE '${yesterday}' UNTIL '${today}'\") { results } } } }`,
   `{ actor { account(id: ${ACCOUNT_ID}) { nrql(query: \"SELECT max(aws.ecs.runningCount.byService) AS 'Running Task Count' FROM Metric Where aws.ecs.ClusterName = 'dls-cup-prod1' FACET aws.ecs.ServiceName LIMIT MAX SINCE '${yesterday}' UNTIL '${today}'\") { results } } } }`,
+  `{ actor { account(id: ${ACCOUNT_ID}) { nrql(query: \"SELECT max(aws.ecs.runningCount.byService) AS 'Running Task Count' FROM Metric Where aws.ecs.ClusterName = 'dls-cup-prod1-builder' FACET aws.ecs.ServiceName LIMIT MAX SINCE '${yesterday}' UNTIL '${today}'\") { results } } } }`
 ];
 
 // Function to fetch query results from New Relic
@@ -94,7 +95,8 @@ function processAndSaveOutput(queryData, maxTasks) {
     const queryLabel =
       index === 0
         ? "Data Format: (MaxCount,Threshold) \n\nApp Cluster "
-        : "Microservices";
+        : index == 1 ? "Microservices" 
+        : "\nBuilder"
     outputData.push({ Output: queryLabel });
 
     // Create queryOutput array with status messages
