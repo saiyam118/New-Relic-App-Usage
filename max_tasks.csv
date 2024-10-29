@@ -12,10 +12,10 @@ NotificationsAppWeb,8
 SupportAdminAppWeb,8
 BuilderMainWeb,6
 AnalyticsWeb,14
-ProductWeb,8
+ProductWeb,14
 AuthExtnWeb,6
 XapiWeb,8
-DriveWeb,14
+DriveWeb,12
 BuilderWeb,3
 AttemptsWeb,4
 PushxWeb,4
