@@ -30,6 +30,11 @@ const queries = [
   `{ actor { account(id: ${ACCOUNT_ID}) { nrql(query: \"SELECT max(aws.ecs.runningCount.byService) AS 'Running Task Count' FROM Metric Where aws.ecs.ClusterName = 'dls-cup-prod1-builder' FACET aws.ecs.ServiceName LIMIT MAX SINCE '${yesterday}' UNTIL '${today}'\") { results } } } }`
 ];
 
+
+const delay = (delaytime) => {
+  return new Promise(resolve => setTimeout(resolve, delaytime));
+}
+
 // Function to fetch query results from New Relic
 async function fetchQueryResults() {
   const results = [];
@@ -52,8 +57,7 @@ async function fetchQueryResults() {
 
       // Store the response data
       results.push(response.data);
-
-      
+      await delay(1500);
     } catch (error) {
       console.error("Error fetching query:", error);
     }
