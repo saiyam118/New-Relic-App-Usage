@@ -7,12 +7,12 @@ App Cluster
 NlpAppWeb: (5, 8)  
 NotificationsAppWeb: (4, 8)  
 LearningpathWeb: (4, 8)  
-SupportAdminAppWeb: (2, 8)  
 DashboardWeb: (2, 8)  
+SupportAdminAppWeb: (2, 8)  
 FocAppWeb: (2, 8)  
 ClassAppWeb: (2, 8)  
-IeltsAppWeb: (2, 8)  
 OnboardingWeb: (2, 8)  
+IeltsAppWeb: (2, 8)  
 AdminAppWeb: (2, 8)  
 MobileGatewayAppWeb: (2, 8)  
 
@@ -22,10 +22,10 @@ AnalyticsClassrecordProgressCEWorkerWorker: (10, 10)  Max threshold reached
 AnalyticsUserProgressCEWorkerWorker: (4, 4)  Max threshold reached
 AnalyticsClassrecordProgressWorkerWorker: (37, 45)  Warning: 80% threshold reached
 AnalyticsWeb: (13, 14)  Warning: 80% threshold reached
-ProductWeb: (7, 8)  Warning: 80% threshold reached
 AuthSpacesWorker: (20, 25)  
 AnalyticsUserProgressWorkerWorker: (18, 30)  
-DriveWeb: (9, 14)  
+DriveWeb: (9, 12)  
+ProductWeb: (7, 14)  
 XapiWeb: (6, 8)  
 AnalyticsProductWorkerWorker: (3, 5)  
 AuthWeb: (3, 8)  
@@ -34,8 +34,8 @@ PushxWeb: (2, 4)
 AuthExtnWeb: (2, 6)  
 AnalyticsClassrecordWorkerWorker: (2, 8)  
 PushxMessagingWorkerWorker: (2, 6)  
-IntegrationsWeb: (2, 4)  
 AuthClassProductWorker: (2, 3)  
+IntegrationsWeb: (2, 4)  
 BuilderWeb: (2, 3)  
 AttemptsWeb: (2, 4)  
 Auth2RuleWorkerWorker: (2, 4)  

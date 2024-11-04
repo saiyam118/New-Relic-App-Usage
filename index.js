@@ -1,15 +1,15 @@
-import fs from 'fs';
-import csv from 'csv-parser';
-import { Parser } from 'json2csv';
-import axios from 'axios';
-import moment from 'moment';
-import sendEmail from './notify.js';
+import fs from "fs";
+import csv from "csv-parser";
+import { Parser } from "json2csv";
+import axios from "axios";
+import moment from "moment";
+import sendEmail from "./notify.js";
 import dotenv from "dotenv";
 
-dotenv.config(); 
+dotenv.config();
 
-const API_KEY = process.env.API_KEY;  // Use API_KEY from .env
-const ACCOUNT_ID = process.env.ACCOUNT_ID;  // Use ACCOUNT_ID from .env
+const API_KEY = process.env.API_KEY; // Use API_KEY from .env
+const ACCOUNT_ID = process.env.ACCOUNT_ID; // Use ACCOUNT_ID from .env
 
 const reportDate = process.argv[2]
   ? moment(process.argv[2], "YYYY-MM-DD 11:00:00+0530")
@@ -20,8 +20,7 @@ const yesterday = reportDate
   .clone()
   .subtract(1, "day")
   .format("YYYY-MM-DD 11:00:00+0530");
-  const yesterday_formatted = reportDate.subtract(1,"day").format("YYYY-MM-DD");
-  
+const yesterday_formatted = reportDate.subtract(1, "day").format("YYYY-MM-DD");
 
 // Queries to New Relic API
 const queries = [
@@ -30,18 +29,19 @@ const queries = [
   `{ actor { account(id: ${ACCOUNT_ID}) { nrql(query: \"SELECT max(aws.ecs.runningCount.byService) AS 'Running Task Count' FROM Metric Where aws.ecs.ClusterName = 'dls-cup-prod1-builder' FACET aws.ecs.ServiceName LIMIT MAX SINCE '${yesterday}' UNTIL '${today}'\") { results } } } }`
 ];
 
-
 const delay = (delaytime) => {
-  return new Promise(resolve => setTimeout(resolve, delaytime));
-}
+  return new Promise((resolve) => setTimeout(resolve, delaytime));
+};
 
 // Function to fetch query results from New Relic
 async function fetchQueryResults() {
   const results = [];
 
   for (const queryObject of queries) {
-    try {
-      console.log("==============================================================");
+    
+      console.log(
+        "=============================================================="
+      );
 
       const response = await axios.post(
         "https://api.eu.newrelic.com/graphql",
@@ -56,15 +56,18 @@ async function fetchQueryResults() {
       );
 
       // Store the response data
-      results.push(response.data);
-      await delay(1500);
-    } catch (error) {
-      console.error("Error fetching query:", error);
-    }
+      //error handling
+
+      if (response.data.data.actor.account.nrql == null) {
+        throw new Error("Error in getting data");
+      } else {
+        results.push(response.data);
+        await delay(1500);
+      }
+    
   }
   return results;
 }
-
 
 // Function to load max tasks data from CSV
 function loadMaxTasksFromCSV(filePath, callback) {
@@ -90,17 +93,15 @@ function processAndSaveOutput(queryData, maxTasks) {
 
   // Loop through each query result in queryData
   queryData.forEach((queryResult, index) => {
-    console.log(
-      `Processing query result ${index + 1}:`,
-      JSON.stringify(queryResult)
-    );
+    console.log(`Processing query result ${index + 1}:`);
 
     // Add a label for each query result (First Query, Second Query, etc.)
     const queryLabel =
       index === 0
         ? "Data Format: (MaxCount,Threshold) \n\nApp Cluster "
-        : index == 1 ? "Microservices" 
-        : "\nBuilder"
+        : index == 1
+        ? "Microservices"
+        : "\nBuilder";
     outputData.push({ Output: queryLabel });
 
     // Create queryOutput array with status messages
@@ -128,13 +129,14 @@ function processAndSaveOutput(queryData, maxTasks) {
 
         return {
           Output: `${workerName}: (${maxCount}, ${threshold})  ${statusMessage}`,
-          StatusPriority: statusMessage === "Max threshold reached"
-            ? 1
-            : statusMessage === "Warning: 80% threshold reached"
-            ? 2
-            : statusMessage == "Please update the threshold value"
-            ? 3
-            :4
+          StatusPriority:
+            statusMessage === "Max threshold reached"
+              ? 1
+              : statusMessage === "Warning: 80% threshold reached"
+              ? 2
+              : statusMessage == "Please update the threshold value"
+              ? 3
+              : 4,
         };
       });
 
@@ -142,7 +144,9 @@ function processAndSaveOutput(queryData, maxTasks) {
     queryOutput.sort((a, b) => a.StatusPriority - b.StatusPriority);
 
     // Combine the sorted output of all queries
-    outputData = outputData.concat(queryOutput.map((item) => ({ Output: item.Output })));
+    outputData = outputData.concat(
+      queryOutput.map((item) => ({ Output: item.Output }))
+    );
 
     // After the first query's data, add a separator line on its own
     if (index === 0) {
@@ -160,22 +164,23 @@ function processAndSaveOutput(queryData, maxTasks) {
   console.log("CSV file has been saved.");
 }
 
-
-
-
 // Main logic to load tasks and fetch & process query results
 async function main() {
   const maxTasksFile = `max_tasks.csv`;
 
   loadMaxTasksFromCSV(maxTasksFile, async (maxTasks) => {
-    const results = await fetchQueryResults();
-    console.log("Fetched query results:");
+    try {
+      const results = await fetchQueryResults();
+      console.log("Fetched query results:");
 
-    processAndSaveOutput(results, maxTasks);
+      processAndSaveOutput(results, maxTasks);
 
-    // Send email after processing the data
-    await sendEmail();
-    console.log("Email sent successfully.");
+      // Send email after processing the data
+      await sendEmail();
+      console.log("Email sent successfully.");
+    } catch (error) {
+      console.log(error);
+    }
   });
 }
 
