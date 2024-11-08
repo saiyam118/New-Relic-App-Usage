@@ -62,7 +62,7 @@ async function fetchQueryResults() {
         throw new Error("Error in getting data");
       } else {
         results.push(response.data);
-        await delay(3500);
+        await delay(10000);
       }
     
   }
