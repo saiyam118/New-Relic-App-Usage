@@ -4,6 +4,7 @@ import { Parser } from "json2csv";
 import axios from "axios";
 import moment from "moment";
 import sendEmail from "./notify.js";
+// import sendFailureMail from "./notify.js"
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -22,11 +23,12 @@ const yesterday = reportDate
   .format("YYYY-MM-DD 11:00:00+0530");
 const yesterday_formatted = reportDate.subtract(1, "day").format("YYYY-MM-DD");
 
+
 // Queries to New Relic API
 const queries = [
   `{ actor { account(id: ${ACCOUNT_ID}) { nrql(query: \"SELECT max(aws.ecs.runningCount.byService) AS 'Running Task Count' FROM Metric Where aws.ecs.ClusterName = 'dls-cup-prod1-apps' FACET aws.ecs.ServiceName LIMIT MAX SINCE '${yesterday}' UNTIL '${today}'\") { results } } } }`,
   `{ actor { account(id: ${ACCOUNT_ID}) { nrql(query: \"SELECT max(aws.ecs.runningCount.byService) AS 'Running Task Count' FROM Metric Where aws.ecs.ClusterName = 'dls-cup-prod1' FACET aws.ecs.ServiceName LIMIT MAX SINCE '${yesterday}' UNTIL '${today}'\") { results } } } }`,
-  `{ actor { account(id: ${ACCOUNT_ID}) { nrql(query: \"SELECT max(aws.ecs.runningCount.byService) AS 'Running Task Count' FROM Metric Where aws.ecs.ClusterName = 'dls-cup-prod1-builder' FACET aws.ecs.ServiceName LIMIT MAX SINCE '${yesterday}' UNTIL '${today}'\") { results } } } }`
+  `{ actor { account(id: ${ACCOUNT_ID}) { nrql(query: \"SELECT max(aws.ecs.runningCount.byService) AS 'Running Task Count' FROM Metric Where aws.ecs.ClusterName = 'dls-cup-prod1-builder' FACET aws.ecs.ServiceName LIMIT MAX SINCE '${yesterday}' UNTIL '${today}'\") { results } } } }`,
 ];
 
 const delay = (delaytime) => {
@@ -34,15 +36,13 @@ const delay = (delaytime) => {
 };
 
 // Function to fetch query results from New Relic
-async function fetchQueryResults() {
-  const results = [];
 
-  for (const queryObject of queries) {
+async function sendrequest(queryObject, retries) {
+  for (let i = 0; i < retries; i++) {
+    console.log('Retry attempt: ' + (i + 1));
+    await delay(5000);
     
-      console.log(
-        "=============================================================="
-      );
-
+    try {
       const response = await axios.post(
         "https://api.eu.newrelic.com/graphql",
         { query: queryObject },
@@ -55,16 +55,54 @@ async function fetchQueryResults() {
         }
       );
 
-      // Store the response data
-      //error handling
-
-      if (response.data.data.actor.account.nrql == null) {
-        throw new Error("Error in getting data");
+      // Check if response contains expected data
+      if (response.data.data.actor.account.nrql != null) {
+        console.log("Successful response received.");
+        return response;
       } else {
-        results.push(response.data);
-        await delay(10000);
+        console.log("Response does not contain expected data.");
       }
-    
+      
+    } catch (error) {
+      console.log(`Request failed on attempt ${i + 1}: ${error.message}`);
+    }
+  }
+
+  console.log("All retries exhausted.");
+  return null;
+}
+
+async function fetchQueryResults() {
+  const results = [];
+
+  for (const queryObject of queries) {
+    console.log(
+      "=============================================================="
+    );
+
+    // const response = await axios.post(
+    //   "https://api.eu.newrelic.com/graphql",
+    //   { query: queryObject },
+    //   {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Accept: "application/json",
+    //       "API-Key": API_KEY,
+    //     },
+    //   }
+    // );
+    const response = await sendrequest(queryObject, 3); 
+    // Store the response data
+    //error handling
+
+    if (response == null) {
+      //send failure mail
+      await sendEmail(1);
+      throw new Error("Error in getting data");
+    } else {
+      results.push(response.data);
+      await delay(10000);
+    }
   }
   return results;
 }
@@ -176,8 +214,11 @@ async function main() {
       processAndSaveOutput(results, maxTasks);
 
       // Send email after processing the data
-      await sendEmail();
+      await sendEmail(0);
       console.log("Email sent successfully.");
+      //send to basecamp
+      //await posttobasecamp();
+      //console.log("posted to basecamp")
     } catch (error) {
       console.log(error);
     }
