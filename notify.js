@@ -3,59 +3,130 @@ import nodemailer from 'nodemailer';
 import  fs from 'fs';
 
 // Define the sendEmail function
-export default function sendEmail() {
+export default function sendEmail(fail) {
+  //fail->1,else->0
   // Read the content of output.txt and the screenshot
-  fs.readFile('output.txt', 'utf8', (err, textData) => {
-    if (err) {
-      console.error('Error reading file:', err);
-      return;
+  if(fail === 0) {
+    fs.readFile('output.txt', 'utf8', (err, textData) => {
+      if (err) {
+        console.error('Error reading file:', err);
+        return;
+      }
+  
+      console.log("Report text : " + textData);
+  
+      // Create a transport object with port 2525
+      var transport = nodemailer.createTransport({
+            service: 'gmail',
+            port: 2525,  // Use port 2525
+            auth: {
+              user: "cupteamtool@gmail.com",  // Your Gmail address
+              pass: "oxqdyawkxefvohcw"   // Your Gmail app password
+            }
+          });
+    
+          // Define email options with HTML content
+          var mailOptions = {
+            from: "cupteamtool@gmail.com",
+            to: ['saiyam.sachdeva@comprotechnologies.com', `megha.garg@comprotechnologies.com`],
+            subject: 'Max Service Count Report',
+            html: `
+              <pre>${textData}</pre>
+            `,
+          };
+    
+          // Send the email
+          transport.sendMail(mailOptions, function(error, info) {
+            if (error) {
+              console.log('Error occurred:', error);
+            } else {
+              console.log('Email sent:', info.response);
+            }
+          });
+  
+    });
+  } else {
+    let textData = "Failure: Maximum Number of Retry Done";
+  var transport = nodemailer.createTransport({
+    service: 'gmail',
+    port: 2525,  // Use port 2525
+    auth: {
+      user: "cupteamtool@gmail.com",  // Your Gmail address
+      pass: "oxqdyawkxefvohcw"   // Your Gmail app password
     }
-
-    console.log("Report text : " + textData);
-
-    // Create a transport object with port 2525
-    var transport = nodemailer.createTransport({
-          service: 'gmail',
-          port: 2525,  // Use port 2525
-          auth: {
-            user: "cupteamtool@gmail.com",  // Your Gmail address
-            pass: "oxqdyawkxefvohcw"   // Your Gmail app password
-          }
-        });
-  
-        // Define email options with HTML content
-        var mailOptions = {
-          from: "cupteamtool@gmail.com",
-          to: ['saiyam.sachdeva@comprotechnologies.com', `megha.garg@comprotechnologies.com`],
-          subject: 'Max Service Count Report',
-          html: `
-            <pre>${textData}</pre>
-          `,
-  //         attachments: [
-  //           {
-  //             filename: 'chart.png',
-  //             content: imageData,
-  //             cid: 'screenshotImage' // Unique content ID for embedding
-  //           },
-  //           {
-  //             filename: 'chart.png',
-  //             content: imageData // Attach the same image as a regular attachment
-  //           }
-  //         ]
-        };
-  
-        // Send the email
-        transport.sendMail(mailOptions, function(error, info) {
-          if (error) {
-            console.log('Error occurred:', error);
-          } else {
-            console.log('Email sent:', info.response);
-          }
-        });
-
   });
+
+
+  // Define email options with HTML content
+  var mailOptions = {
+    from: "cupteamtool@gmail.com",
+    to: ['saiyam.sachdeva@comprotechnologies.com', `megha.garg@comprotechnologies.com`],
+    subject: 'Max Service Count Report',
+    html: `
+      <pre>${textData}</pre>
+    `,
+  };
+
+  
+   // Send the email
+   transport.sendMail(mailOptions, function(error, info) {
+    if (error) {
+      console.log('Error occurred:', error);
+    } else {
+      console.log('Email sent:', info.response);
+    }
+  });
+  }
 }
 
-// Export the sendEmail function
-//module.exports = sendEmail;
-// export { sendEmail };
+
+// export default function sendFailureMail() {
+//   // Read the content of output.txt and the screenshot
+//   // fs.readFile('output.txt', 'utf8', (err, textData) => {
+//   //   if (err) {
+//   //     console.error('Error reading file:', err);
+//   //     return;
+//   //   }
+
+//   //   console.log("Report text : " + textData);
+
+//   //   // Create a transport object with port 2525
+//   //   var transport = nodemailer.createTransport({
+//   //         service: 'gmail',
+//   //         port: 2525,  // Use port 2525
+//   //         auth: {
+//   //           user: "cupteamtool@gmail.com",  // Your Gmail address
+//   //           pass: "oxqdyawkxefvohcw"   // Your Gmail app password
+//   //         }
+//   //       });
+  
+//   //       // Define email options with HTML content
+//   //       var mailOptions = {
+//   //         from: "cupteamtool@gmail.com",
+//   //         to: ['saiyam.sachdeva@comprotechnologies.com', `megha.garg@comprotechnologies.com`],
+//   //         subject: 'Max Service Count Report',
+//   //         html: `
+//   //           <pre>${textData}</pre>
+//   //         `,
+//   //       };
+  
+//   //       // Send the email
+//   //       transport.sendMail(mailOptions, function(error, info) {
+//   //         if (error) {
+//   //           console.log('Error occurred:', error);
+//   //         } else {
+//   //           console.log('Email sent:', info.response);
+//   //         }
+//   //       });
+
+//   // });
+
+
+
+  
+
+
+// }
+
+
+
