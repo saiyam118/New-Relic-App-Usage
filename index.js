@@ -4,8 +4,9 @@ import { Parser } from "json2csv";
 import axios from "axios";
 import moment from "moment";
 import sendEmail from "./notify.js";
-// import sendFailureMail from "./notify.js"
+import {postToBasecamp} from "./basecamp.js";
 import dotenv from "dotenv";
+
 
 dotenv.config();
 
@@ -217,7 +218,7 @@ async function main() {
       await sendEmail(0);
       console.log("Email sent successfully.");
       //send to basecamp
-      //await posttobasecamp();
+      await postToBasecamp();
       //console.log("posted to basecamp")
     } catch (error) {
       console.log(error);
