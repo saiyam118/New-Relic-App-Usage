@@ -27,7 +27,7 @@ const yesterday_formatted = reportDate.subtract(1, "day").format("YYYY-MM-DD");
 
 // Queries to New Relic API
 const queries = [
-  `{ actor { account(id: ${ACCOUNT_ID}) { nrql(query: \"SELECT max(aws.ecs.runningCount.byService) AS 'Running Task Count' FROM Metric Where aws.ecs.ClusterName = 'dls-cup-prod1-apps' FACET aws.ecs.ServiceName LIMIT MAX SINCE '${yesterday}' UNTIL '${today}'\") { results } } } }`,
+  `{ actor { account(id: ${ACCOUNT_ID}) { nrql(query: \"SELECT maax(aws.ecs.runningCount.byService) AS 'Running Task Count' FROM Metric Where aws.ecs.ClusterName = 'dls-cup-prod1-apps' FACET aws.ecs.ServiceName LIMIT MAX SINCE '${yesterday}' UNTIL '${today}'\") { results } } } }`,
   `{ actor { account(id: ${ACCOUNT_ID}) { nrql(query: \"SELECT max(aws.ecs.runningCount.byService) AS 'Running Task Count' FROM Metric Where aws.ecs.ClusterName = 'dls-cup-prod1' FACET aws.ecs.ServiceName LIMIT MAX SINCE '${yesterday}' UNTIL '${today}'\") { results } } } }`,
   `{ actor { account(id: ${ACCOUNT_ID}) { nrql(query: \"SELECT max(aws.ecs.runningCount.byService) AS 'Running Task Count' FROM Metric Where aws.ecs.ClusterName = 'dls-cup-prod1-builder' FACET aws.ecs.ServiceName LIMIT MAX SINCE '${yesterday}' UNTIL '${today}'\") { results } } } }`,
 ];
