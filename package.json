@@ -6,9 +6,13 @@
     "csv-parser": "^3.0.0",
     "dotenv": "^16.4.5",
     "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
     "json2csv": "^6.0.0-alpha.2",
     "moment": "^2.30.1",
+    "node-fetch": "^3.3.2",
     "nodemailer": "^6.9.15",
+    "puppeteer": "^23.9.0",
+    "url": "^0.11.4",
     "xlsx": "^0.18.5"
   }
 }
