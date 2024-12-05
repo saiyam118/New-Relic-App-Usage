@@ -70,7 +70,7 @@ const postToBasecamp = async () => {
   };
 
   const report = fs.readFileSync(`output.txt`, `utf8`);
-  // console.log(report);
+  
   const body = {
     content: report,
   };
