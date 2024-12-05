@@ -4,7 +4,7 @@ import { Parser } from "json2csv";
 import axios from "axios";
 import moment from "moment";
 import sendEmail from "./notify.js";
-import {postToBasecamp} from "./basecamp.js";
+import {postToBasecamp,checkAndUpdateExpiresIn} from "./basecamp.js";
 import dotenv from "dotenv";
 
 
@@ -40,8 +40,9 @@ const delay = (delaytime) => {
 
 async function sendrequest(queryObject, retries) {
   for (let i = 0; i < retries; i++) {
-    console.log('Retry attempt: ' + (i + 1));
-    await delay(5000);
+    console.log('Attempt: ' + (i + 1));
+    if(i>0) 
+      await delay(5000);
     
     try {
       const response = await axios.post(
@@ -80,6 +81,8 @@ async function fetchQueryResults() {
     console.log(
       "=============================================================="
     );
+
+    
     const response = await sendrequest(queryObject, 3); 
     // Store the response data
     //error handling
@@ -90,7 +93,7 @@ async function fetchQueryResults() {
       throw new Error("Error in getting data");
     } else {
       results.push(response.data);
-      await delay(10000);
+      await delay(3000);
     }
   }
   return results;
@@ -205,9 +208,12 @@ async function main() {
       // Send email after processing the data
       await sendEmail(0);
       console.log("Email sent successfully.");
+
+      //check access token expiry date
+      await checkAndUpdateExpiresIn();
       //send to basecamp
       await postToBasecamp();
-      //console.log("posted to basecamp")
+      console.log("Posted to basecamp");
     } catch (error) {
       console.log(error);
     }
