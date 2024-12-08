@@ -1,11 +1,11 @@
 Output
-Report Date: 2024-12-06 10:00:00+0530 - 2024-12-07 10:00:00+0530 
+Report Date: 2024-12-07 10:00:00+0530 - 2024-12-08 10:00:00+0530 
 
 Data Format: (MaxCount,Threshold) 
 
 App Cluster 
-NotificationsAppWeb: (3, 8)  
 OnboardingWeb: (3, 8)  
+NotificationsAppWeb: (2, 8)  
 DashboardWeb: (2, 8)  
 SupportAdminAppWeb: (2, 8)  
 FocAppWeb: (2, 8)  
@@ -22,11 +22,10 @@ XapiMainWorkerWorker: (7, 25)
 AnalyticsClassrecordProgressCEWorkerWorker: (7, 10)  
 AnalyticsUserProgressWorkerWorker: (6, 30)  
 AuthSpacesWorker: (6, 25)  
-ProductWeb: (4, 14)  
 AnalyticsWeb: (4, 14)  
-DriveWeb: (4, 12)  
 AnalyticsProductWorkerWorker: (3, 5)  
-AnalyticsUserProgressCEWorkerWorker: (3, 4)  
+ProductWeb: (3, 14)  
+DriveWeb: (3, 12)  
 PubWeb: (2, 4)  
 PushxWeb: (2, 4)  
 XapiWeb: (2, 8)  
@@ -35,6 +34,7 @@ AnalyticsClassrecordWorkerWorker: (2, 8)
 PushxMessagingWorkerWorker: (2, 6)  
 AuthClassProductWorker: (2, 3)  
 IntegrationsWeb: (2, 4)  
+AnalyticsUserProgressCEWorkerWorker: (2, 4)  
 BuilderWeb: (2, 3)  
 AuthWeb: (2, 8)  
 AttemptsWeb: (2, 4)  
