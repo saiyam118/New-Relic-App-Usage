@@ -1,9 +1,16 @@
 // notify.js
 import nodemailer from 'nodemailer';
 import  fs from 'fs';
+import CryptoJS from "crypto-js";
+import dotenv from "dotenv";
+
+dotenv.config(); // Load environment variables from .env
+
+const secretKey = process.env.SECRET_KEY; // Use API_KEY from .env
 
 // Define the sendEmail function
 export default function sendEmail(fail) {
+  let password = CryptoJS.AES.decrypt("U2FsdGVkX1+eOet6PMhEyu+sZHVYS0o3IGvhJxmV9V23E0dXH/7rYFpkKH9SgR+p", secretKey).toString(CryptoJS.enc.Utf8);
   //fail->1,else->0
   // Read the content of output.txt and the screenshot
   if(fail === 0) {
@@ -21,7 +28,7 @@ export default function sendEmail(fail) {
             port: 2525,  // Use port 2525
             auth: {
               user: "cupteamtool@gmail.com",  // Your Gmail address
-              pass: "oxqdyawkxefvohcw"   // Your Gmail app password
+              pass: password   // Your Gmail app password
             }
           });
     
@@ -52,7 +59,7 @@ export default function sendEmail(fail) {
     port: 2525,  // Use port 2525
     auth: {
       user: "cupteamtool@gmail.com",  // Your Gmail address
-      pass: "oxqdyawkxefvohcw"   // Your Gmail app password
+      pass: password   // Your Gmail app password
     }
   });
 

@@ -4,10 +4,15 @@ import axios from "axios";
 import { time } from "console";
 import moment from "moment";
 import { startServer } from "./startserver.js";
+import CryptoJS from "crypto-js";
+import dotenv from "dotenv";
 
 let access_token = data.access_token;
 let refresh_token = data.refresh_token;
 let creation_date = data.day_created;
+
+dotenv.config(); // Load environment variables from .env
+const secretKey = process.env.SECRET_KEY; // Use API_KEY from .env
 
 async function checkAndUpdateExpiresIn() {
   const currentDate = moment().format("YYYY-MM-DD");
@@ -20,8 +25,9 @@ async function checkAndUpdateExpiresIn() {
     try {
       const accessToken = await startServer();
       console.log("Access token:", accessToken);
+      const encryptedaccessToken = CryptoJS.AES.encrypt(accessToken, secretKey).toString();
       //change value of day_created
-      data.access_token = accessToken;
+      data.access_token = encryptedaccessToken;
       data.day_created = moment().format("YYYY-MM-DD");
       saveParams();
     } catch (error) {
@@ -37,7 +43,8 @@ async function checkAndUpdateExpiresIn() {
         const accessToken = await startServer();
         console.log("Access token:", accessToken);
         //change value of day_created
-        data.access_token = accessToken;
+        const encryptedaccessToken = CryptoJS.AES.encrypt(accessToken, secretKey).toString();
+        data.access_token = encryptedaccessToken;
         data.day_created = moment().format("YYYY-MM-DD");
         saveParams();
       } catch (error) {
@@ -66,7 +73,7 @@ const postToBasecamp = async () => {
     "https://3.basecampapi.com/4489886/buckets/20201395/recordings/7964796971/comments.json";
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${access_token}`,
+    Authorization: `Bearer ${CryptoJS.AES.decrypt(access_token, secretKey).toString(CryptoJS.enc.Utf8)}`,
   };
 
   const report = fs.readFileSync(`output.txt`, `utf8`);
