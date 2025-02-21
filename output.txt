@@ -1,12 +1,12 @@
 Output
-Report Date: 2025-02-19 10:00:00+0530 - 2025-02-20 10:00:00+0530 
+Report Date: 2025-02-20 10:00:00+0530 - 2025-02-21 10:00:00+0530 
 
 Data Format: (MaxCount,Threshold) 
 
 App Cluster 
 DashboardWeb: (10, 10)  Max threshold reached
+NotificationsAppWeb: (5, 8)  
 OnboardingWeb: (5, 8)  
-NotificationsAppWeb: (4, 8)  
 NlpAppWeb: (4, 8)  
 SupportAdminAppWeb: (2, 8)  
 FocAppWeb: (2, 8)  
@@ -20,14 +20,14 @@ Microservices
 AnalyticsClassrecordProgressCEWorkerWorker: (10, 10)  Max threshold reached
 AnalyticsUserProgressCEWorkerWorker: (4, 4)  Max threshold reached
 AnalyticsClassrecordProgressWorkerWorker: (20, 45)  
-XapiMainWorkerWorker: (10, 25)  
+XapiMainWorkerWorker: (11, 25)  
 ProductWeb: (10, 18)  
 AnalyticsUserProgressWorkerWorker: (10, 30)  
 AuthSpacesWorker: (8, 25)  
 DriveWeb: (6, 12)  
+AuthWeb: (6, 8)  
 XapiWeb: (4, 8)  
 AnalyticsWeb: (4, 14)  
-AuthWeb: (4, 8)  
 AnalyticsProductWorkerWorker: (3, 5)  
 PubWeb: (2, 4)  
 PushxWeb: (2, 4)  
