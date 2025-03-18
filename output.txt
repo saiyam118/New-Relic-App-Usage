@@ -1,12 +1,12 @@
 Output
-Report Date: 2025-03-16 10:00:00+0530 - 2025-03-17 10:00:00+0530 
+Report Date: 2025-03-17 10:00:00+0530 - 2025-03-18 10:00:00+0530 
 
 Data Format: (MaxCount,Threshold) 
 
 App Cluster 
-DashboardWeb: (5, 10)  
-NotificationsAppWeb: (3, 8)  
-OnboardingWeb: (3, 8)  
+DashboardWeb: (10, 10)  Max threshold reached
+NotificationsAppWeb: (7, 8)  Warning: 80% threshold reached
+OnboardingWeb: (7, 8)  Warning: 80% threshold reached
 NlpAppWeb: (3, 8)  
 SupportAdminAppWeb: (2, 8)  
 FocAppWeb: (2, 8)  
@@ -17,27 +17,27 @@ AdminAppWeb: (2, 8)
 MobileGatewayAppWeb: (2, 8)  
 
 Microservices
-AnalyticsClassrecordProgressCEWorkerWorker: (10, 10)  Max threshold reached
-AnalyticsClassrecordProgressWorkerWorker: (14, 45)  
-XapiMainWorkerWorker: (8, 25)  
-AnalyticsUserProgressWorkerWorker: (6, 30)  
-AuthSpacesWorker: (6, 25)  
-ProductWeb: (5, 18)  
-AnalyticsWeb: (4, 14)  
-DriveWeb: (4, 12)  
-AnalyticsProductWorkerWorker: (3, 5)  
-AnalyticsUserProgressCEWorkerWorker: (3, 4)  
-PubWeb: (2, 4)  
-PushxWeb: (2, 4)  
+PubWeb: (4, 4)  Max threshold reached
+AnalyticsUserProgressCEWorkerWorker: (4, 4)  Max threshold reached
+AuthClassProductWorker: (3, 3)  Max threshold reached
+BuilderWeb: (3, 3)  Max threshold reached
+AnalyticsClassrecordProgressCEWorkerWorker: (12, 10)  Please update the threshold value
+AnalyticsProductWorkerWorker: (6, 5)  Please update the threshold value
+AnalyticsClassrecordProgressWorkerWorker: (22, 45)  
+XapiMainWorkerWorker: (12, 25)  
+AnalyticsUserProgressWorkerWorker: (12, 30)  
+ProductWeb: (11, 18)  
+AuthSpacesWorker: (7, 25)  
+AnalyticsWeb: (5, 14)  
+DriveWeb: (5, 12)  
+AnalyticsClassrecordWorkerWorker: (4, 8)  
+PushxWeb: (3, 4)  
+XapiWeb: (3, 8)  
+IntegrationsWeb: (3, 4)  
+AuthWeb: (3, 8)  
+AttemptsWeb: (3, 4)  
 AuthExtnWeb: (2, 6)  
-XapiWeb: (2, 8)  
-AnalyticsClassrecordWorkerWorker: (2, 8)  
 PushxMessagingWorkerWorker: (2, 6)  
-AuthClassProductWorker: (2, 3)  
-IntegrationsWeb: (2, 4)  
-BuilderWeb: (2, 3)  
-AuthWeb: (2, 8)  
-AttemptsWeb: (2, 4)  
 Auth2RuleWorkerWorker: (2, 4)  
 
 Builder
