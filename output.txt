@@ -1,13 +1,13 @@
 Output
-Report Date: 2025-04-06 10:00:00+0530 - 2025-04-07 10:00:00+0530 
+Report Date: 2025-04-07 10:00:00+0530 - 2025-04-08 10:00:00+0530 
 
 Data Format: (MaxCount,Threshold) 
 
 App Cluster 
-NotificationsAppWeb: (5, 8)  
-DashboardWeb: (5, 10)  
+NotificationsAppWeb: (7, 8)  Warning: 80% threshold reached
+DashboardWeb: (8, 10)  
+OnboardingWeb: (5, 8)  
 LearningpathWeb: (3, 8)  
-OnboardingWeb: (3, 8)  
 NlpAppWeb: (3, 8)  
 SupportAdminAppWeb: (2, 8)  
 FocAppWeb: (2, 8)  
@@ -22,21 +22,21 @@ BuilderWeb: (3, 3)  Max threshold reached
 AnalyticsClassrecordProgressCEWorkerWorker: (9, 10)  Warning: 80% threshold reached
 AnalyticsClassrecordProgressWorkerWorker: (18, 45)  
 XapiMainWorkerWorker: (11, 25)  
+ProductWeb: (10, 18)  
 AuthSpacesWorker: (10, 25)  
 AnalyticsUserProgressWorkerWorker: (8, 30)  
+AnalyticsWeb: (6, 14)  
 DriveWeb: (6, 12)  
-ProductWeb: (5, 18)  
-XapiWeb: (4, 8)  
-AnalyticsWeb: (4, 14)  
+AuthWeb: (4, 8)  
 AnalyticsProductWorkerWorker: (3, 5)  
+XapiWeb: (3, 8)  
 PubWeb: (2, 4)  
 PushxWeb: (2, 4)  
 AuthExtnWeb: (2, 6)  
 AnalyticsClassrecordWorkerWorker: (2, 8)  
 PushxMessagingWorkerWorker: (2, 6)  
-IntegrationsWeb: (2, 4)  
 AuthClassProductWorker: (2, 3)  
-AuthWeb: (2, 8)  
+IntegrationsWeb: (2, 4)  
 AttemptsWeb: (2, 4)  
 Auth2RuleWorkerWorker: (2, 4)  
 
