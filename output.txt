@@ -1,44 +1,44 @@
 Output
-Report Date: 2025-05-06 10:00:00+0530 - 2025-05-07 10:00:00+0530 
+Report Date: 2025-05-07 10:00:00+0530 - 2025-05-08 10:00:00+0530 
 
 Data Format: (MaxCount,Threshold) 
 
 App Cluster 
 DashboardWeb: (9, 10)  Warning: 80% threshold reached
-NotificationsAppWeb: (6, 8)  
+NotificationsAppWeb: (7, 8)  Warning: 80% threshold reached
 OnboardingWeb: (4, 8)  
-NlpAppWeb: (3, 8)  
+AdminAppWeb: (4, 8)  
+NlpAppWeb: (4, 8)  
 SupportAdminAppWeb: (2, 8)  
 FocAppWeb: (2, 8)  
 ClassAppWeb: (2, 8)  
 LearningpathWeb: (2, 8)  
 IeltsAppWeb: (2, 8)  
-AdminAppWeb: (2, 8)  
 MobileGatewayAppWeb: (2, 8)  
 
 Microservices
-AnalyticsClassrecordProgressCEWorkerWorker: (10, 10)  Max threshold reached
-AnalyticsUserProgressCEWorkerWorker: (4, 4)  Max threshold reached
+AnalyticsProductWorkerWorker: (5, 5)  Max threshold reached
+AuthClassProductWorker: (3, 3)  Max threshold reached
 BuilderWeb: (3, 3)  Max threshold reached
-AnalyticsClassrecordProgressWorkerWorker: (20, 45)  
-ProductWeb: (11, 18)  
-XapiMainWorkerWorker: (10, 25)  
-AnalyticsUserProgressWorkerWorker: (6, 30)  
-AuthSpacesWorker: (6, 25)  
-DriveWeb: (5, 12)  
+AnalyticsClassrecordProgressCEWorkerWorker: (14, 10)  Please update the threshold value
+AnalyticsUserProgressCEWorkerWorker: (5, 4)  Please update the threshold value
+AnalyticsClassrecordProgressWorkerWorker: (36, 45)  
+AnalyticsUserProgressWorkerWorker: (12, 30)  
+XapiMainWorkerWorker: (11, 25)  
+ProductWeb: (9, 18)  
+AuthSpacesWorker: (8, 25)  
+DriveWeb: (6, 12)  
 AuthWeb: (5, 8)  
+XapiWeb: (4, 8)  
+PushxMessagingWorkerWorker: (4, 6)  
 AnalyticsWeb: (4, 14)  
-AnalyticsProductWorkerWorker: (3, 5)  
-XapiWeb: (3, 8)  
-IntegrationsWeb: (3, 4)  
+AnalyticsClassrecordWorkerWorker: (3, 8)  
 PubWeb: (2, 4)  
 PushxWeb: (2, 4)  
 AuthExtnWeb: (2, 6)  
-AnalyticsClassrecordWorkerWorker: (2, 8)  
-PushxMessagingWorkerWorker: (2, 6)  
-AuthClassProductWorker: (2, 3)  
+IntegrationsWeb: (2, 4)  
 AttemptsWeb: (2, 4)  
 Auth2RuleWorkerWorker: (2, 4)  
 
 Builder
-BuilderMainWeb: (2, 6)  
+BuilderMainWeb: (3, 6)  
