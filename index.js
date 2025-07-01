@@ -4,7 +4,7 @@ import { Parser } from "json2csv";
 import axios from "axios";
 import moment from "moment";
 import sendEmail from "./notify.js";
-import {postToBasecamp,checkAndUpdateExpiresIn} from "./basecamp.js";
+import {postToBasecamp} from "./basecamp.js";
 import dotenv from "dotenv";
 
 
@@ -209,8 +209,6 @@ async function main() {
       await sendEmail(0);
       console.log("Email sent successfully.");
 
-      //check access token expiry date
-      await checkAndUpdateExpiresIn();
       //send to basecamp
       await postToBasecamp();
       console.log("Posted to basecamp");

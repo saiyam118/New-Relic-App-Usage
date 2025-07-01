@@ -1,79 +1,49 @@
-import data from "./params.js";
 import fs from "fs";
 import axios from "axios";
 import { time } from "console";
 import moment from "moment";
-import { startServer } from "./startserver.js";
 import CryptoJS from "crypto-js";
 import dotenv from "dotenv";
 
-let access_token = data.access_token;
-let refresh_token = data.refresh_token;
-let creation_date = data.day_created;
+dotenv.config();
+const secretKey = process.env.SECRET_KEY;
 
-dotenv.config(); // Load environment variables from .env
-const secretKey = process.env.SECRET_KEY; // Use API_KEY from .env
+const encryptedclientId = "U2FsdGVkX1/NvoGhZPkYjP2FcrUErmI/OFS5HOH3OMDdj64Agm1nUejs0iyKh4OySL6xYyzm291i2kMGS5gWZQ==";
+const encryptedclientSecret = "U2FsdGVkX19fg2Z9UgfmKxsQi7FXA0hYhXWtzwx2UbHnQGdEROEFryy05VNnpoK2mfBJHeMVkPLxAwO05kBbFA==";
+const encryptedrefreshToken = "U2FsdGVkX1/Bre16n6FlFrJXWuKNw7ZrGEViWogbEEroasznd7/eMe3CX2l07ArlBXxun+CGqCGK0YJY/yrQ6MST69/haVtixckQURWwyJIBUWIR+S08a3JcAzVQqz77wM2HSzg2zIsmvYsMH4yWtcZ501E6NP1RJzoLD9xWDsAmeYb6OC+5iSypsFEQRw26dZ9Mp8wvnSKFieK2bQcosdrCcTF6UW2g2dR5l3qMx1LPiyX7HUoK07jEfL0ULSkN8jFCoFFHCNY3eY3lMsafEPfD/0nhTAMHDJCB5YOUBoy3sNACThXT088Z6AhUvHzr2Q/1MWcAkRzKin9FrU9UwYqnpiRr+RxB++s3voMt3Ow5t/KTRS4q2Sahf3ZZ9VLH14Uu7PoxF1qpLUJD+PdTs41+xe7iWyLKOKbBZKA8BiWWaBUxiRhDt50DL+Y0qRzsUhyJ5Wi/n/58FodmJPRPqqtIYbvFluvf2suDJx04O5GD178ltWmp+pcfhka1/8BodZO+jYqekMGsOvUoMpv4yiOuULPNoQ4NQHVv058o/2Q=";
 
-async function checkAndUpdateExpiresIn() {
-  const currentDate = moment().format("YYYY-MM-DD");
-  const curr_day = moment().format("DD");
-  const curr_mon = moment().format("MM");
-  let creation_day = moment(creation_date).format("DD");
-  let creation_mon = moment(creation_date).format("MM");
-  if (curr_mon != creation_mon) {
-    //create new token and set the value of day_created
-    try {
-      const accessToken = await startServer();
-      console.log("Access token:", accessToken);
-      const encryptedaccessToken = CryptoJS.AES.encrypt(accessToken, secretKey).toString();
-      //change value of day_created
-      data.access_token = encryptedaccessToken;
-      data.day_created = moment().format("YYYY-MM-DD");
-      saveParams();
-    } catch (error) {
-      console.error("Error during OAuth process:", error);
-    }
-  } else {
-    if (curr_day - creation_day <= 10) {
-      //token valid
-      console.log("token valid");
-    } else {
-      //create new token and set the value of day_created
-      try {
-        const accessToken = await startServer();
-        console.log("Access token:", accessToken);
-        //change value of day_created
-        const encryptedaccessToken = CryptoJS.AES.encrypt(accessToken, secretKey).toString();
-        data.access_token = encryptedaccessToken;
-        data.day_created = moment().format("YYYY-MM-DD");
-        saveParams();
-      } catch (error) {
-        console.error("Error during OAuth process:", error);
+
+async function getAccessTokenFromRefreshToken() {
+  const clientId = CryptoJS.AES.decrypt(encryptedclientId, secretKey).toString(CryptoJS.enc.Utf8);
+  const clientSecret = CryptoJS.AES.decrypt(encryptedclientSecret, secretKey).toString(CryptoJS.enc.Utf8);
+  const refreshToken = CryptoJS.AES.decrypt(encryptedrefreshToken, secretKey).toString(CryptoJS.enc.Utf8);
+
+  try {
+    const response = await axios.post("https://launchpad.37signals.com/authorization/token", {
+      type: "refresh",
+      refresh_token: refreshToken,
+      client_id: clientId,
+      client_secret: clientSecret,
+    }, {
+      headers: {
+        "Content-Type": "application/json"
       }
-    }
+    });
+
+    return response.data.access_token;
+  } catch (error) {
+    console.error("❌ Failed to fetch access token from refresh token:", error.response?.data || error.message);
+    throw error;
   }
 }
 
-function saveParams() {
-  // Convert data to a JSON string with proper formatting
-  const dataString = `export default ${JSON.stringify(data, null, 2)};`;
-
-  // Write the updated data to params.js
-  fs.writeFileSync("./params.js", dataString, "utf8", (err) => {
-    if (err) {
-      console.error("Error writing to file:", err);
-    } else {
-      console.log("params.js successfully updated with new expires_in value.");
-    }
-  });
-}
-
 const postToBasecamp = async () => {
-  const url =
-    "https://3.basecampapi.com/4489886/buckets/20201395/recordings/7964796971/comments.json";
+const accessToken = await getAccessTokenFromRefreshToken();
+console.log("accessToken: "+ accessToken);
+  const url = "https://3.basecampapi.com/4489886/buckets/20201395/recordings/7964796971/comments.json";
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${CryptoJS.AES.decrypt(access_token, secretKey).toString(CryptoJS.enc.Utf8)}`,
+    Authorization: `Bearer ${accessToken}`,
   };
 
   const report = fs.readFileSync(`output.txt`, `utf8`);
@@ -88,4 +58,4 @@ const postToBasecamp = async () => {
   }
 };
 
-export { postToBasecamp, checkAndUpdateExpiresIn };
+export { postToBasecamp };
