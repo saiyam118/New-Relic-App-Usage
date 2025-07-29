@@ -1,5 +1,5 @@
 Output
-Report Date: 2025-07-27 10:00:00+0530 - 2025-07-28 10:00:00+0530 
+Report Date: 2025-07-28 10:00:00+0530 - 2025-07-29 10:00:00+0530 
 
 Data Format: (MaxCount,Threshold) 
 
@@ -17,26 +17,26 @@ MobileGatewayAppWeb: (2, 8)
 IeltsAppWeb: (0, 8)  
 
 Microservices
+AuthWeb: (8, 8)  Max threshold reached
 BuilderWeb: (3, 3)  Max threshold reached
-AnalyticsClassrecordProgressWorkerWorker: (9, 45)  
+AnalyticsClassrecordProgressWorkerWorker: (10, 45)  
+XapiMainWorkerWorker: (7, 25)  
 AnalyticsUserProgressWorkerWorker: (6, 30)  
+AnalyticsClassrecordProgressCEWorkerWorker: (6, 10)  
 AuthSpacesWorker: (6, 25)  
-XapiMainWorkerWorker: (4, 25)  
-AnalyticsWeb: (4, 14)  
-AnalyticsClassrecordProgressCEWorkerWorker: (4, 10)  
+AnalyticsWeb: (5, 14)  
+ProductWeb: (4, 18)  
 AnalyticsProductWorkerWorker: (3, 5)  
-ProductWeb: (3, 18)  
 DriveWeb: (3, 12)  
 PubWeb: (2, 4)  
 PushxWeb: (2, 4)  
-XapiWeb: (2, 8)  
 AuthExtnWeb: (2, 6)  
+XapiWeb: (2, 8)  
 AnalyticsClassrecordWorkerWorker: (2, 8)  
 PushxMessagingWorkerWorker: (2, 6)  
 AuthClassProductWorker: (2, 3)  
 IntegrationsWeb: (2, 4)  
 AnalyticsUserProgressCEWorkerWorker: (2, 4)  
-AuthWeb: (2, 8)  
 AttemptsWeb: (2, 4)  
 Auth2RuleWorkerWorker: (2, 4)  
 
