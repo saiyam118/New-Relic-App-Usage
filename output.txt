@@ -1,43 +1,43 @@
 Output
-Report Date: 2025-11-24 10:00:00+0530 - 2025-11-25 10:00:00+0530 
+Report Date: 2025-11-25 10:00:00+0530 - 2025-11-26 10:00:00+0530 
 
 Data Format: (MaxCount,Threshold) 
 
 App Cluster 
 DashboardWeb: (10, 10)  Max threshold reached
 NotificationsAppWeb: (6, 10)  
-OnboardingWeb: (5, 8)  
-LearningpathWeb: (4, 8)  
-NlpAppWeb: (4, 8)  
+OnboardingWeb: (6, 8)  
+NlpAppWeb: (3, 8)  
 SupportAdminAppWeb: (2, 8)  
 FocAppWeb: (2, 8)  
 ClassAppWeb: (2, 8)  
+LearningpathWeb: (2, 8)  
 AdminAppWeb: (2, 8)  
 MobileGatewayAppWeb: (2, 8)  
 IeltsAppWeb: (0, 8)  
 
 Microservices
-AnalyticsUserProgressCEWorkerWorker: (4, 4)  Max threshold reached
-BuilderWeb: (3, 3)  Max threshold reached
-AnalyticsClassrecordProgressCEWorkerWorker: (9, 10)  Warning: 80% threshold reached
-AnalyticsClassrecordProgressWorkerWorker: (23, 45)  
-XapiMainWorkerWorker: (19, 25)  
-ProductWeb: (10, 18)  
-AnalyticsUserProgressWorkerWorker: (8, 30)  
-AuthSpacesWorker: (8, 25)  
-DriveWeb: (6, 12)  
+AttemptsWeb: (4, 4)  Max threshold reached
+AuthClassProductWorker: (3, 3)  Max threshold reached
+AnalyticsClassrecordProgressCEWorkerWorker: (16, 10)  Please update the threshold value
+AnalyticsUserProgressCEWorkerWorker: (7, 4)  Please update the threshold value
+AnalyticsProductWorkerWorker: (6, 5)  Please update the threshold value
+BuilderWeb: (4, 3)  Please update the threshold value
+AnalyticsClassrecordProgressWorkerWorker: (18, 45)  
+AnalyticsUserProgressWorkerWorker: (12, 30)  
+XapiMainWorkerWorker: (11, 25)  
+ProductWeb: (11, 18)  
+AuthSpacesWorker: (7, 25)  
 AuthWeb: (6, 8)  
+AnalyticsWeb: (5, 14)  
+DriveWeb: (5, 12)  
 XapiWeb: (4, 8)  
-AnalyticsWeb: (4, 14)  
-AnalyticsProductWorkerWorker: (3, 5)  
-PubWeb: (2, 4)  
-PushxWeb: (2, 4)  
+AnalyticsClassrecordWorkerWorker: (4, 8)  
+PubWeb: (3, 4)  
+PushxWeb: (3, 4)  
+IntegrationsWeb: (3, 4)  
 AuthExtnWeb: (2, 6)  
-AnalyticsClassrecordWorkerWorker: (2, 8)  
 PushxMessagingWorkerWorker: (2, 6)  
-IntegrationsWeb: (2, 4)  
-AuthClassProductWorker: (2, 3)  
-AttemptsWeb: (2, 4)  
 Auth2RuleWorkerWorker: (2, 4)  
 
 Builder
