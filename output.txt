@@ -1,44 +1,44 @@
 Output
-Report Date: 2025-12-13 10:00:00+0530 - 2025-12-14 10:00:00+0530 
+Report Date: 2025-12-14 10:00:00+0530 - 2025-12-15 10:00:00+0530 
 
 Data Format: (MaxCount,Threshold) 
 
 App Cluster 
-NotificationsAppWeb: (5, 10)  
 DashboardWeb: (5, 10)  
-ClassAppWeb: (4, 8)  
-LearningpathWeb: (4, 8)  
-OnboardingWeb: (4, 8)  
-SupportAdminAppWeb: (3, 8)  
-FocAppWeb: (3, 8)  
-AdminAppWeb: (3, 8)  
+NotificationsAppWeb: (4, 10)  
+OnboardingWeb: (3, 8)  
 NlpAppWeb: (3, 8)  
-MobileGatewayAppWeb: (3, 8)  
+SupportAdminAppWeb: (2, 8)  
+FocAppWeb: (2, 8)  
+ClassAppWeb: (2, 8)  
+LearningpathWeb: (2, 8)  
+AdminAppWeb: (2, 8)  
+MobileGatewayAppWeb: (2, 8)  
 IeltsAppWeb: (0, 8)  
 
 Microservices
-AnalyticsProductWorkerWorker: (5, 5)  Max threshold reached
-IntegrationsWeb: (4, 4)  Max threshold reached
-AttemptsWeb: (4, 4)  Max threshold reached
-AuthClassProductWorker: (4, 3)  Please update the threshold value
-BuilderWeb: (4, 3)  Please update the threshold value
-AnalyticsClassrecordProgressWorkerWorker: (13, 45)  
-AuthSpacesWorker: (12, 25)  
-AnalyticsUserProgressWorkerWorker: (11, 30)  
-XapiMainWorkerWorker: (9, 25)  
+BuilderWeb: (3, 3)  Max threshold reached
+AnalyticsClassrecordProgressWorkerWorker: (14, 45)  
+XapiMainWorkerWorker: (10, 25)  
+AnalyticsUserProgressWorkerWorker: (6, 30)  
 AnalyticsClassrecordProgressCEWorkerWorker: (6, 10)  
+AuthSpacesWorker: (6, 25)  
 ProductWeb: (5, 18)  
-AnalyticsWeb: (5, 14)  
-XapiWeb: (4, 8)  
+AnalyticsWeb: (4, 14)  
 DriveWeb: (4, 12)  
-PubWeb: (3, 4)  
-PushxWeb: (3, 4)  
-AnalyticsClassrecordWorkerWorker: (3, 8)  
-PushxMessagingWorkerWorker: (3, 6)  
+AnalyticsProductWorkerWorker: (3, 5)  
 AnalyticsUserProgressCEWorkerWorker: (3, 4)  
-AuthWeb: (3, 8)  
-Auth2RuleWorkerWorker: (3, 4)  
+PubWeb: (2, 4)  
+PushxWeb: (2, 4)  
+XapiWeb: (2, 8)  
 AuthExtnWeb: (2, 6)  
+AnalyticsClassrecordWorkerWorker: (2, 8)  
+PushxMessagingWorkerWorker: (2, 6)  
+AuthClassProductWorker: (2, 3)  
+IntegrationsWeb: (2, 4)  
+AuthWeb: (2, 8)  
+AttemptsWeb: (2, 4)  
+Auth2RuleWorkerWorker: (2, 4)  
 
 Builder
 BuilderMainWeb: (2, 6)  
