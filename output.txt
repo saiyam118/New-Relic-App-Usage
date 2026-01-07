@@ -1,11 +1,11 @@
 Output
-Report Date: 2026-01-05 10:00:00+0530 - 2026-01-06 10:00:00+0530 
+Report Date: 2026-01-06 10:00:00+0530 - 2026-01-07 10:00:00+0530 
 
 Data Format: (MaxCount,Threshold) 
 
 App Cluster 
-DashboardWeb: (6, 10)  
-NotificationsAppWeb: (5, 10)  
+DashboardWeb: (5, 10)  
+NotificationsAppWeb: (3, 10)  
 OnboardingWeb: (3, 8)  
 SupportAdminAppWeb: (2, 8)  
 FocAppWeb: (2, 8)  
