@@ -1,11 +1,11 @@
 Output
-Report Date: 2026-07-02 10:00:00+0530 - 2026-07-03 10:00:00+0530 
+Report Date: 2026-07-03 10:00:00+0530 - 2026-07-04 10:00:00+0530 
 
 Data Format: (MaxCount,Threshold) 
 
 App Cluster 
-DashboardWeb: (6, 10)  
-NotificationsAppWeb: (5, 10)  
+DashboardWeb: (5, 10)  
+NotificationsAppWeb: (4, 10)  
 OnboardingWeb: (3, 8)  
 SupportAdminAppWeb: (2, 8)  
 FocAppWeb: (2, 8)  
@@ -23,8 +23,8 @@ AnalyticsUserProgressWorkerWorker: (6, 30)
 AnalyticsClassrecordProgressCEWorkerWorker: (6, 10)  
 AuthSpacesWorker: (6, 25)  
 ProductWeb: (5, 18)  
-AnalyticsWeb: (5, 14)  
 XapiMainWorkerWorker: (4, 25)  
+AnalyticsWeb: (4, 14)  
 AnalyticsProductWorkerWorker: (3, 5)  
 PubWeb: (2, 4)  
 PushxWeb: (2, 4)  
