@@ -35,7 +35,7 @@ export default function sendEmail(fail) {
           // Define email options with HTML content
           var mailOptions = {
             from: "cupteamtool@gmail.com",
-            to: ['saiyam.sachdeva@comprotechnologies.com', `megha.garg@comprotechnologies.com`],
+            to: ['saiyam.sachdeva@comprotechnologies.com', `megha.garg@comprotechnologies.com`, `lavish.mehta@comprotechnologies.com`],
             subject: 'Max Service Count Report',
             html: `
               <pre>${textData}</pre>
